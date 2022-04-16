@@ -33,12 +33,14 @@ public class TicketMachineTest {
 
         try {
             int valor = 4;
+            int saldo = 0; 
             TicketMachine obj = new TicketMachine(valor);
             int[] arr = {2,4,5,10,50,100};
             for (int i = 0; i < arr.length; i++){
                 obj.inserir(arr[i]);
+                saldo = saldo + arr[i];
             }
-            Assert.assertEquals(171, obj.getSaldo());
+            Assert.assertEquals(saldo, obj.getSaldo());
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -51,8 +53,8 @@ public class TicketMachineTest {
         try{
             int valor = 5;
             TicketMachine obj = new TicketMachine(valor);
-            obj.inserir(10);
-            Assert.assertEquals(5, obj.getTroco());
+            obj.inserir(valor);
+            Assert.assertEquals(valor, obj.getTroco());
         }
         catch (Exception e){
             System.out.println(e);
@@ -66,10 +68,10 @@ public class TicketMachineTest {
         try{
             int valor = 10;
             TicketMachine obj = new TicketMachine(valor);
-            obj.inserir(10);
+            obj.inserir(valor);
             System.out.println(obj.imprimir());
             String result = "*****************\n";
-            result += "*** R$ 10,00 ****\n";
+            result += "*** R$ " + valor + ",00 ****\n";
             result += "*****************\n";
             Assert.assertEquals(result, obj.imprimir());
         }
